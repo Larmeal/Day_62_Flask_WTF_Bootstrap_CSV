@@ -1,0 +1,48 @@
+{% extends 'bootstrap/base.html' %} 
+{% block styles %} 
+{{ super() }}
+<link
+  rel="stylesheet"
+  href="{{url_for('static', filename='css/styles.css')}}"/>
+{% endblock %}
+
+{% block title %}Restaurants{% endblock %} 
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h1>All Cafes</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+          {% for inform in range(8) %}
+            <th scope="col">{{ cafes["columns"][inform] }}</th>
+          {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for inform in range(length) %}
+          <tr>
+            <th scope="row">{{ cafes["index"][inform] + 1 }}</th>
+            <td>{{ cafes["data"][inform][0] }}</td>
+            <td><a href="{{ cafes['data'][inform][1]}}">Maps Link</a></td>
+            <td>{{ cafes["data"][inform][2] }}</td>
+            <td>{{ cafes["data"][inform][3] }}</td>
+            <td>{{ cafes["data"][inform][4] }}</td>
+            <td>{{ cafes["data"][inform][5] }}</td>
+            <td>{{ cafes["data"][inform][6] }}</td>
+            <td>{{ cafes["data"][inform][7] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <p><a href="{{ url_for('home') }}">Return to index page</a></p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
